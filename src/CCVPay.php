@@ -4,12 +4,17 @@ namespace QuibaX\CCVPay;
 
 class CCVPay
 {
+    private $baseUrl = '';
+
+    private $apiKey = '';
+
     /**
      * Create a new Skeleton Instance.
+     * @param $apiKey
      */
-    public function __construct()
+    public function __construct($apiKey)
     {
-        // constructor body
+        $this->apiKey = $apiKey;
     }
 
     /**
