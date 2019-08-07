@@ -1,0 +1,53 @@
+{
+    "name": "spatie/ccv-pay",
+    "description": "CCV-Pay Payment Gateway",
+    "keywords": [
+        "spatie",
+        "ccv-pay"
+    ],
+    "homepage": "https://github.com/spatie/ccv-pay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stijn Debakker",
+            "email": "stijn@quibax.com",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.3"
+    },
+    "require-dev": {
+        "larapack/dd": "^1.0",
+        "phpunit/phpunit": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spatie\\Skeleton\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spatie\\Skeleton\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Spatie\\Skeleton\\SkeletonServiceProvider"
+            ],
+            "aliases": {
+                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
+            }
+        }
+    }
+}
