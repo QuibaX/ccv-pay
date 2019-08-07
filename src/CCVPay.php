@@ -2,7 +2,7 @@
 
 namespace QuibaX\CCVPay;
 
-class CCVPayClass
+class CCVPay
 {
     /**
      * Create a new Skeleton Instance.

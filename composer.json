@@ -1,17 +1,17 @@
 {
-    "name": "spatie/ccv-pay",
+    "name": "quibax/ccv-pay",
     "description": "CCV-Pay Payment Gateway",
     "keywords": [
-        "spatie",
+        "quibax",
         "ccv-pay"
     ],
-    "homepage": "https://github.com/spatie/ccv-pay",
+    "homepage": "https://github.com/quibax/ccv-pay",
     "license": "MIT",
     "authors": [
         {
             "name": "Stijn Debakker",
             "email": "stijn@quibax.com",
-            "homepage": "https://spatie.be",
+            "homepage": "http://quibax.com",
             "role": "Developer"
         }
     ],
@@ -43,10 +43,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
+                "QuibaX\\CCVPay\\CCVPayProvider"
             ],
             "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
+                "Skeleton": "QuibaX\\CCVPay\\CCVPayFacade"
             }
         }
     }
