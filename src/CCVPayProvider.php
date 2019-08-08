@@ -4,7 +4,7 @@ namespace QuibaX\CCVPay;
 
 use Illuminate\Support\ServiceProvider;
 
-class CCVPayServiceProvider extends ServiceProvider
+class CCVPayProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -12,9 +12,9 @@ class CCVPayServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([
+            /*$this->publishes([
                 __DIR__.'/../config/config.php' => config_path('skeleton.php'),
-            ], 'config');
+            ], 'config');*/
 
             /*
             $this->loadViewsFrom(__DIR__.'/../resources/views', 'skeleton');
@@ -31,6 +31,6 @@ class CCVPayServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'skeleton');
+        //$this->mergeConfigFrom(__DIR__.'/../config/config.php', 'skeleton');
     }
 }

@@ -16,7 +16,8 @@
         }
     ],
     "require": {
-        "php": "^7.3"
+        "php": "^7.3",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "larapack/dd": "^1.0",
@@ -24,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src"
+            "QuibaX\\CCVPay\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "QuibaX\\CCVPay\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -44,10 +45,7 @@
         "laravel": {
             "providers": [
                 "QuibaX\\CCVPay\\CCVPayProvider"
-            ],
-            "aliases": {
-                "Skeleton": "QuibaX\\CCVPay\\CCVPayFacade"
-            }
+            ]
         }
     }
 }
