@@ -3,6 +3,8 @@
 namespace QuibaX\CCVPay;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use QuibaX\CCVPay\Objects\Transaction;
 
 class CCVPay
 {
@@ -40,7 +42,14 @@ class CCVPay
     }
 
     public function getTransaction($transactionReference) {
-        return json_decode($this->get('/transaction', ['reference' => $transactionReference])->getBody()->getContents());
+        try {
+            return Transaction::getByObject(json_decode($this->get('/transaction?reference=' . $transactionReference)->getBody()->getContents()));
+        } catch(ClientException $clientException) {
+            if(class_exists("\Sentry")) {
+                \Sentry::captureException($clientException);
+            }
+            return false; // Probably an invalid transaction
+        }
     }
 
     /**
@@ -53,19 +62,26 @@ class CCVPay
      * @return mixed
      */
     public function createPayment($amount, $returnUrl, $paymentMethod, $metadata = null, $merchantOrderReference = null, $description = '', $language = 'eng') {
-        $request = $this->post('/payment', [
-            "method" => "card",
-            "brand" => $paymentMethod,
-            "language" => $language,
-            "currency" => "eur",
-            "returnUrl" => $returnUrl,
-            "amount" => $amount,
-            "metadata" => $metadata,
-            "merchantOrderReference" => $merchantOrderReference,
-            "webhookUrl" => 'http://a157aa43.ngrok.io/webhooks/ccv-pay-webhook',//route('ccv-pay-webhook'),
-            "description" => $description
-        ]);
+        try {
+            $request = $this->post('/payment', [
+                "method" => "card",
+                "brand" => $paymentMethod,
+                "language" => $language,
+                "currency" => "eur",
+                "returnUrl" => $returnUrl,
+                "amount" => $amount,
+                "metadata" => $metadata,
+                "merchantOrderReference" => $merchantOrderReference,
+                "webhookUrl" => 'https://537a9a8b.ngrok.io/webhooks/ccv-pay-webhook',//route('ccv-pay-webhook'),
+                "description" => $description
+            ]);
 
-        return json_decode($request->getBody()->getContents());
+            return json_decode($request->getBody()->getContents());
+        } catch (ClientException $clientException) {
+            if(class_exists("\Sentry")) {
+                \Sentry::captureException($clientException);
+            }
+            return false;
+        }
     }
 }
