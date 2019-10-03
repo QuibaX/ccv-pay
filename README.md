@@ -11,8 +11,7 @@ composer require quibax/ccv-pay
 ## Usage
 
 ``` php
-$skeleton = new QuibaX\CCVPay();
-echo $skeleton->echoPhrase('Hello!');
+TODO
 ```
 
 ### Testing
