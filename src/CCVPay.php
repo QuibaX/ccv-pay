@@ -59,9 +59,9 @@ class CCVPay
      * @param null $metadata
      * @param null $merchantOrderReference
      * @param string $language (eng/fra/deu/nld)
-     * @return mixed
+     * @return Transaction | false
      */
-    public function createPayment($amount, $returnUrl, $paymentMethod, $metadata = null, $merchantOrderReference = null, $description = '', $language = 'eng') {
+    public function createPayment($amount, $returnUrl, $paymentMethod, $webhookUrl, $metadata = null, $merchantOrderReference = null, $description = '', $language = 'eng') {
         try {
             $request = $this->post('/payment', [
                 "method" => "card",
@@ -72,11 +72,11 @@ class CCVPay
                 "amount" => $amount,
                 "metadata" => $metadata,
                 "merchantOrderReference" => $merchantOrderReference,
-                "webhookUrl" => 'https://537a9a8b.ngrok.io/webhooks/ccv-pay-webhook',//route('ccv-pay-webhook'),
+                "webhookUrl" => $webhookUrl,
                 "description" => $description
             ]);
 
-            return json_decode($request->getBody()->getContents());
+            return Transaction::getByObject(json_decode($request->getBody()->getContents()));
         } catch (ClientException $clientException) {
             if(class_exists("\Sentry")) {
                 \Sentry::captureException($clientException);
